@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Main{
 
+    final static byte MONTH_IN_YEAR = 12;
+    final static byte PERCENT = 100;
     public static void main(String[] args) {
 
         int principle = (int) readNumber("Principle: ", 1000, 1_000_000);
@@ -15,8 +17,20 @@ public class Main{
 
         double mortgage= calculateMortgage(principle,annualInterest,years);
         String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
+        System.out.println();
+        System.out.println("Mortgage");
+        System.out.println("-------");
+        System.out.println("Monthly Payments " + mortgageFormatted);
         System.out.print("Mortgage :" + mortgageFormatted);
 
+        System.out.println();
+        System.out.println("Payment Schedule");
+        System.out.println("-------");
+
+        for( short month =1; month< years* MONTH_IN_YEAR; month++) {
+            double balance = calculateBalance(principle, annualInterest, years, month);
+            System.out.println(NumberFormat.getCurrencyInstance().format(balance));
+        }
     }
 
     public static double calculateMortgage(int principle, float annualInterest, byte years){
@@ -48,12 +62,14 @@ public class Main{
         return value;
     }
 
-    public static double calculateBalance((int principle, float annualInterest, byte years, short numberOfPaymentsMade){
-        final byte MONTH_IN_YEAR = 12;
-        final byte PERCENT = 100;
+    public static double calculateBalance(int principle, float annualInterest, byte years, short numberOfPaymentsMade){
+
         float  numberOfPayment = years * MONTH_IN_YEAR;
         float monthlyInterest = annualInterest / PERCENT / MONTH_IN_YEAR;
 
-        double balance =
+        double balance = principle * (Math.pow((1+ monthlyInterest), numberOfPayment)- Math.pow(1 + monthlyInterest, numberOfPaymentsMade))
+                /(Math.pow(1 + monthlyInterest, numberOfPayment)-1);
+
+        return  balance;
     }
 }
