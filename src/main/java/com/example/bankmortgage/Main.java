@@ -47,4 +47,13 @@ public class Main{
         }
         return value;
     }
+
+    public static double calculateBalance((int principle, float annualInterest, byte years, short numberOfPaymentsMade){
+        final byte MONTH_IN_YEAR = 12;
+        final byte PERCENT = 100;
+        float  numberOfPayment = years * MONTH_IN_YEAR;
+        float monthlyInterest = annualInterest / PERCENT / MONTH_IN_YEAR;
+
+        double balance =
+    }
 }
