@@ -1,7 +1,6 @@
 package com.example.bankmortgage;
 
 import java.text.NumberFormat;
-import java.util.Scanner;
 
 public class Main{
 
@@ -9,9 +8,9 @@ public class Main{
     final static byte PERCENT = 100;
     public static void main(String[] args) {
 
-        int principle = (int) readNumber("Principle: ", 1000, 1_000_000);
-        float annualInterest = (float) readNumber("Annual Interest Rate: ", 1 , 30);
-        byte years = (byte) readNumber("Period (Years) :" ,1,30);
+        int principle = (int) console.readNumber("Principle: ", 1000, 1_000_000);
+        float annualInterest = (float) console.readNumber("Annual Interest Rate: ", 1 , 30);
+        byte years = (byte) console.readNumber("Period (Years) :" ,1,30);
 
 
         PrintMortgage(principle, annualInterest, years);
@@ -52,21 +51,6 @@ public class Main{
 
         return mortgage;
 
-    }
-
-    public static double readNumber(String prompt, double min, double max) {
-        Scanner scanner = new Scanner(System.in);
-        double value;
-        while (true) {
-            System.out.print(prompt);
-            value = scanner.nextFloat();
-            if (value >= min && value <= max) {
-                break;
-            }
-            System.out.println("Enter Value Between " + min + " and " + max);
-
-        }
-        return value;
     }
 
     public static double calculateBalance(int principle, float annualInterest, byte years, short numberOfPaymentsMade){
