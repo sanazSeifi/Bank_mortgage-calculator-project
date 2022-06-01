@@ -1,7 +1,16 @@
 package com.example.bankmortgage;
 
 public class MortgageCalculator {
-    public static double calculateMortgage(int principle, float annualInterest, byte years){
+    private int principle;
+     private float annualInterest;
+     private byte years;
+
+    public MortgageCalculator(int principle, float annualInterest, byte years) {
+        this.principle = principle;
+        this.annualInterest = annualInterest;
+        this.years = years;
+    }
+    public static double calculateMortgage(){
 
         final byte MONTH_IN_YEAR = 12;
         final byte PERCENT = 100;
@@ -15,7 +24,7 @@ public class MortgageCalculator {
 
     }
 
-    public static double calculateBalance(int principle, float annualInterest, byte years, short numberOfPaymentsMade){
+    public static double calculateBalance(short numberOfPaymentsMade){
 
         float  numberOfPayment = years * Main.MONTH_IN_YEAR;
         float monthlyInterest = annualInterest / Main.PERCENT / Main.MONTH_IN_YEAR;
