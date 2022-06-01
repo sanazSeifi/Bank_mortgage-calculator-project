@@ -1,7 +1,5 @@
 package com.example.bankmortgage;
 
-import java.text.NumberFormat;
-
 public class Main{
 
     final static byte MONTH_IN_YEAR = 12;
@@ -13,30 +11,9 @@ public class Main{
         byte years = (byte) console.readNumber("Period (Years) :" ,1,30);
 
 
-        PrintMortgage(principle, annualInterest, years);
+        MortgageReport.PrintMortgage(principle, annualInterest, years);
 
-        PrintPaymentSchedule(principle, annualInterest, years);
-    }
-
-    private static void PrintMortgage(int principle, float annualInterest, byte years) {
-        double mortgage= calculateMortgage(principle, annualInterest, years);
-        String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
-        System.out.println();
-        System.out.println("Mortgage");
-        System.out.println("-------");
-        System.out.println("Monthly Payments " + mortgageFormatted);
-        System.out.print("Mortgage :" + mortgageFormatted);
-    }
-
-    private static void PrintPaymentSchedule(int principle, float annualInterest, byte years) {
-        System.out.println();
-        System.out.println("Payment Schedule");
-        System.out.println("-------");
-
-        for(short month = 1; month< years * MONTH_IN_YEAR; month++) {
-            double balance = calculateBalance(principle, annualInterest, years, month);
-            System.out.println(NumberFormat.getCurrencyInstance().format(balance));
-        }
+        MortgageReport.PrintPaymentSchedule(principle, annualInterest, years);
     }
 
     public static double calculateMortgage(int principle, float annualInterest, byte years){
