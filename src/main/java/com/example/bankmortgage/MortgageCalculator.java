@@ -10,7 +10,7 @@ public class MortgageCalculator {
         this.annualInterest = annualInterest;
         this.years = years;
     }
-    public static double calculateMortgage(){
+    public double calculateMortgage(){
 
         final byte MONTH_IN_YEAR = 12;
         final byte PERCENT = 100;
@@ -24,7 +24,7 @@ public class MortgageCalculator {
 
     }
 
-    public static double calculateBalance(short numberOfPaymentsMade){
+    public double calculateBalance(short numberOfPaymentsMade){
 
         float  numberOfPayment = years * Main.MONTH_IN_YEAR;
         float monthlyInterest = annualInterest / Main.PERCENT / Main.MONTH_IN_YEAR;

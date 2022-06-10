@@ -3,8 +3,12 @@ package com.example.bankmortgage;
 import java.text.NumberFormat;
 
 public class MortgageReport {
+
+    private static MortgageCalculator calculator;
+
     public static void PrintMortgage(int principle, float annualInterest, byte years) {
-        double mortgage= MortgageCalculator.calculateMortgage(principle, annualInterest, years);
+        calculator = new MortgageCalculator(principle, annualInterest, years);
+       double mortgage = calculator.calculateMortgage();
         String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
         System.out.println();
         System.out.println("Mortgage");
@@ -19,7 +23,7 @@ public class MortgageReport {
         System.out.println("-------");
 
         for(short month = 1; month< years * Main.MONTH_IN_YEAR; month++) {
-            double balance = MortgageCalculator.calculateBalance(principle, annualInterest, years, month);
+            double balance = calculator.calculateBalance(month);
             System.out.println(NumberFormat.getCurrencyInstance().format(balance));
         }
     }
